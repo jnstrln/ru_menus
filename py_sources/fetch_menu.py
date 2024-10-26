@@ -2,12 +2,13 @@
 """Module docstring."""
 
 from pathlib import Path
+from enum import Enum
 import requests
 from bs4 import BeautifulSoup
-from enum import Enum
 
 # Couleurs pour la sortie terminal
 class Colors(Enum):
+    """Colors class docstring."""
     RED = "\033[31m"
     RESET = "\033[0m"
 
@@ -18,6 +19,7 @@ def fetch_first_menu(url):
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
+            # On utilise BeautifulSoup pour parser l'html
             soup = BeautifulSoup(response.content, "html.parser")
 
             # Nom du restaurant
